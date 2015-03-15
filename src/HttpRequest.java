@@ -32,9 +32,9 @@ public class HttpRequest {
 	}
 
 	String[] tmp = firstLine.split(" ");
-	method = /* Fill in */;
-	URI = /* Fill in */;
-	version = /* Fill in */;
+	method = "GET"; //
+	URI = ver; //
+	version = 1.0; //
 
 	System.out.println("URI is: " + URI);
 
