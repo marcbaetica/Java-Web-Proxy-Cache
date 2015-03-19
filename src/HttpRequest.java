@@ -32,9 +32,11 @@ public class HttpRequest {
 	}
 
 	String[] tmp = firstLine.split(" ");
-	method = "GET"; //
-	URI = ver; //
-	version = 1.0; //
+	
+	//for inputs below string array defined as per protocol specifications (definition of method, uri and version for first tree elements)
+        method = tmp[0];
+        URI = tmp[1];
+        version = tmp[2];
 
 	System.out.println("URI is: " + URI);
 
