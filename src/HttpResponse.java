@@ -1,8 +1,10 @@
 /**
  * HttpResponse - Handle HTTP replies
  *
- * 
+ * $Id: HttpResponse.java,v 1.3 2004/02/16 15:21:46 kangasha Exp $
  *
+ * This class takes care of reading the replies from servers and processing them
+ * 
  */
 
 import java.io.*;
@@ -32,7 +34,7 @@ public class HttpResponse {
 
 	/* First read status line and response headers */
 	try {
-	    String line = /* Fill in */;
+	    String line = fromServer.readLine();
 	    while (line.length() != 0) {
 		if (!gotStatusLine) {
 		    statusLine = line;
@@ -47,11 +49,10 @@ public class HttpResponse {
 		 * header "Content-Length", others return
 		 * "Content-length". You need to check for both
 		 * here. */
-		if (line.startsWith(/* Fill in */) ||
-		    line.startsWith(/* Fill in */)) {
-		    String[] tmp = line.split(" ");
-		    length = Integer.parseInt(tmp[1]);
-		}
+		if (line.startsWith("Content-length:") || line.startsWith("Content-Length:")) {
+                    String[] tmp = line.split(" ");
+                    length = Integer.parseInt(tmp[1]);
+                }
 		line = fromServer.readLine();
 	    }
 	} catch (IOException e) {
@@ -78,15 +79,14 @@ public class HttpResponse {
 	     * response. */
 	    while (bytesRead < length || loop) {
 		/* Read it in as binary data */
-		int res = /* Fill in */;
+		int res = fromServer.read(buf, 0, BUF_SIZE);
 		if (res == -1) {
 		    break;
 		}
 		/* Copy the bytes into body. Make sure we don't exceed
 		 * the maximum object size. */
 		for (int i = 0; 
-		     i < res && (i + bytesRead) < MAX_OBJECT_SIZE; 
-		     i++) {
+		     i < res && (i + bytesRead) < MAX_OBJECT_SIZE; i++) {
 		    /* Fill in */
 		}
 		bytesRead += res;
