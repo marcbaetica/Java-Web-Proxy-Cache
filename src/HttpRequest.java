@@ -1,8 +1,10 @@
 /**
  * HttpRequest - HTTP request container and parser
  *
- * 
+ * $Id: HttpRequest.java,v 1.3 2004/02/16 15:21:14 kangasha Exp $
  *
+ * This class contains the routines for parsing and processing the incoming requests from clients
+ * 
  */
 
 import java.io.*;
